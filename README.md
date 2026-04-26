@@ -23,16 +23,16 @@ Exposes three tools to an MCP client:
 git clone https://github.com/William12556/ael-mcp.git
 ```
 
-No additional package installation is required if the `mcp` package is already present in the target Python interpreter (e.g. `/opt/homebrew/bin/python3`).
+No additional package installation is required if the `mcp` package is already present in the target Python interpreter.
 
 To verify:
 ```bash
-/opt/homebrew/bin/python3 -m pip show mcp
+python3 -m pip show mcp
 ```
 
 If not present:
 ```bash
-/opt/homebrew/bin/pip3 install mcp
+pip3 install mcp
 ```
 
 ## Claude Desktop Configuration
@@ -43,12 +43,14 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "ael-mcp": {
-      "command": "/opt/homebrew/bin/python3",
-      "args": ["/Users/williamwatson/Documents/GitHub/ael-mcp/server.py"]
+      "command": "/path/to/python3",
+      "args": ["/path/to/ael-mcp/server.py"]
     }
   }
 }
 ```
+
+Replace `/path/to/python3` with the interpreter that has the `mcp` package installed (e.g. `/opt/homebrew/bin/python3` on macOS with Homebrew).
 
 ## Tool Reference
 

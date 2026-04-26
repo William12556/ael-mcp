@@ -121,9 +121,9 @@ Invokes `orchestrator.py --mode reset` synchronously.
 
 ### 4.2 Python Interpreter
 
-The MCP server runs under the interpreter specified in `claude_desktop_config.json` — `/opt/homebrew/bin/python3` on this system. The orchestrator subprocess is spawned using the same interpreter (`python3` resolved via PATH, which Claude Desktop inherits from the shell environment).
+The MCP server runs under the interpreter specified in `claude_desktop_config.json`. The orchestrator subprocess is spawned using `python3` resolved via PATH, which Claude Desktop inherits from the shell environment.
 
-The orchestrator's runtime dependencies (`openai`, `rich`, `pyyaml`, etc.) must be installed in the interpreter used to spawn it. If the orchestrator uses a separate interpreter or venv, an optional `python_bin` parameter may be added to `start_ael` by consensus.
+The orchestrator's runtime dependencies (`openai`, `rich`, `pyyaml`, etc.) must be installed in the interpreter used to spawn it. If the orchestrator requires a separate interpreter or venv, an optional `python_bin` parameter may be added to `start_ael` by consensus.
 
 ### 4.3 Run Record
 
@@ -170,14 +170,14 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "ael-mcp": {
-      "command": "/opt/homebrew/bin/python3",
-      "args": ["/Users/williamwatson/Documents/GitHub/ael-mcp/server.py"]
+      "command": "/path/to/python3",
+      "args": ["/path/to/ael-mcp/server.py"]
     }
   }
 }
 ```
 
-The `mcp` package (v1.26.0) is already present in `/opt/homebrew/lib/python3.11/site-packages`. No additional installation is required.
+Replace `/path/to/python3` with the interpreter that has the `mcp` package installed.
 
 ### 6.2 Dependencies
 
@@ -217,6 +217,7 @@ The `mcp` package (v1.26.0) is already present in `/opt/homebrew/lib/python3.11/
 |---|---|---|
 | 0.1 | 2026-04-25 | Initial design |
 | 0.2 | 2026-04-26 | Updated interpreter path to /opt/homebrew/bin/python3 |
+| 0.3 | 2026-04-26 | Anonymised all user-specific paths |
 
 ---
 
