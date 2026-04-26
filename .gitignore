@@ -1,7 +1,47 @@
+# Python
 __pycache__/
-*.py[cod]
-*.egg-info/
+*.pyc
+.pytest_cache/
 dist/
 build/
+*.egg-info/
 .env
+*.py[cod]
+
+
+# Virtual environments
+venv/
+.venv/
+
+# macOS
+.DS_Store
+**/.DS_Store
+.zsh_history
+
+# Logs
 *.log
+**/*.log
+
+# Obsidian
+.obsidian/
+*.canvas
+
+# AI framework
+deprecated/
+workspace/admin/
+workspace/ai/
+workspace/proposal/
+workspace/proposal/closed/
+
+# Tactical Domain
+CLAUDE.local.md
+.claude/settings.json
+.claude/commands/
+.ael/ralph/
+
+# other
+10000
+test.txt
+**/tmp
+*.pdf
+project_information.md
