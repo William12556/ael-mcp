@@ -14,16 +14,25 @@ Exposes three tools to an MCP client:
 
 ## Requirements
 
-- Python 3.11+
-- [`mcp`](https://pypi.org/project/mcp/) package (`pip install mcp`)
+- Python 3.11+ with the [`mcp`](https://pypi.org/project/mcp/) package
 - A downstream project using the [LLM-Governance-and-Orchestration](https://github.com/William12556/LLM-Governance-and-Orchestration) framework
 
 ## Installation
 
 ```bash
 git clone https://github.com/William12556/ael-mcp.git
-cd ael-mcp
-pip install mcp
+```
+
+No additional package installation is required if the `mcp` package is already present in the target Python interpreter (e.g. `/opt/homebrew/bin/python3`).
+
+To verify:
+```bash
+/opt/homebrew/bin/python3 -m pip show mcp
+```
+
+If not present:
+```bash
+/opt/homebrew/bin/pip3 install mcp
 ```
 
 ## Claude Desktop Configuration
@@ -34,14 +43,12 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "ael-mcp": {
-      "command": "/usr/bin/python3",
-      "args": ["/path/to/ael-mcp/server.py"]
+      "command": "/opt/homebrew/bin/python3",
+      "args": ["/Users/williamwatson/Documents/GitHub/ael-mcp/server.py"]
     }
   }
 }
 ```
-
-Replace `/usr/bin/python3` with the Python interpreter that has the `mcp` package installed.
 
 ## Tool Reference
 
@@ -65,7 +72,7 @@ Reads `.ael/ralph/` state files from the project directory.
 |---|---|---|
 | `project_dir` | string | Absolute path to the downstream project root |
 
-Returns: run state summary (active PID if running, last result files present).
+Returns: run state summary (active PID if running, state files present).
 
 ### `reset_ael`
 

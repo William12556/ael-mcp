@@ -121,14 +121,9 @@ Invokes `orchestrator.py --mode reset` synchronously.
 
 ### 4.2 Python Interpreter
 
-The orchestrator requires a Python environment with its own dependencies (`openai`, `rich`, `pyyaml`, etc.). The interpreter used to launch `orchestrator.py` is resolved in priority order:
+The MCP server runs under the interpreter specified in `claude_desktop_config.json` — `/opt/homebrew/bin/python3` on this system. The orchestrator subprocess is spawned using the same interpreter (`python3` resolved via PATH, which Claude Desktop inherits from the shell environment).
 
-1. `python_bin` field in `mcp-run.json` from a prior run (not applicable to `start_ael`).
-2. `python3` on `PATH` as visible to the MCP server process.
-
-The caller (Claude Desktop) is responsible for ensuring the Python environment containing orchestrator dependencies is on `PATH`, or for passing the full interpreter path as a future extension.
-
-**Note:** A future `python_bin` optional parameter on `start_ael` may be added by consensus to allow explicit interpreter specification without relying on `PATH`.
+The orchestrator's runtime dependencies (`openai`, `rich`, `pyyaml`, etc.) must be installed in the interpreter used to spawn it. If the orchestrator uses a separate interpreter or venv, an optional `python_bin` parameter may be added to `start_ael` by consensus.
 
 ### 4.3 Run Record
 
@@ -175,18 +170,18 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "ael-mcp": {
-      "command": "/usr/bin/python3",
+      "command": "/opt/homebrew/bin/python3",
       "args": ["/Users/williamwatson/Documents/GitHub/ael-mcp/server.py"]
     }
   }
 }
 ```
 
-Replace `/usr/bin/python3` with the Python interpreter that has the `mcp` package installed.
+The `mcp` package (v1.26.0) is already present in `/opt/homebrew/lib/python3.11/site-packages`. No additional installation is required.
 
 ### 6.2 Dependencies
 
-`server.py` requires only the `mcp` Python package. All other imports are stdlib (`asyncio`, `subprocess`, `json`, `os`, `pathlib`, `uuid`, `datetime`).
+`server.py` requires only the `mcp` Python package. All other imports are stdlib (`subprocess`, `json`, `os`, `pathlib`, `uuid`, `datetime`).
 
 [Return to Table of Contents](<#table of contents>)
 
@@ -221,6 +216,7 @@ Replace `/usr/bin/python3` with the Python interpreter that has the `mcp` packag
 | Version | Date | Description |
 |---|---|---|
 | 0.1 | 2026-04-25 | Initial design |
+| 0.2 | 2026-04-26 | Updated interpreter path to /opt/homebrew/bin/python3 |
 
 ---
 
