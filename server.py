@@ -3,7 +3,7 @@ ael-mcp server — MCP server for launching and managing the AEL tactical domain
 
 Tools:
     start_ael   — launch orchestrator.py as a detached background process
-    ael_status  — report current run state from .ael/ralph/
+    ael_status  — report current run state from ai/state/ralph/
     reset_ael   — invoke orchestrator.py --mode reset synchronously
 
 Transport: stdio (Claude Desktop)
@@ -23,7 +23,7 @@ mcp = FastMCP("ael-mcp")
 # Paths relative to project_dir (framework convention)
 _ORCHESTRATOR_REL = "ai/ael/src/orchestrator.py"
 _CONFIG_REL       = "ai/ael/config.yaml"
-_STATE_REL        = ".ael/ralph"
+_STATE_REL        = "ai/state/ralph"
 _RUN_RECORD       = "mcp-run.json"
 
 # State files reported by ael_status

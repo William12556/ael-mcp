@@ -9,7 +9,7 @@ Exposes three tools to an MCP client:
 | Tool | Description |
 |---|---|
 | `start_ael` | Launch `orchestrator.py` in detached mode for a given project |
-| `ael_status` | Report current run state from the project's `.ael/ralph/` directory |
+| `ael_status` | Report current run state from the project's `ai/state/ralph/` directory |
 | `reset_ael` | Invoke `orchestrator.py --mode reset` to clear AEL state |
 
 ## Requirements
@@ -68,7 +68,7 @@ Returns: `run_id` (UUID), PID, log path.
 
 ### `ael_status`
 
-Reads `.ael/ralph/` state files from the project directory.
+Reads `ai/state/ralph/` state files from the project directory.
 
 | Parameter | Type | Description |
 |---|---|---|

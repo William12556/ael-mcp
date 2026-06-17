@@ -54,7 +54,7 @@ All tools accept `project_dir` as a required parameter (absolute path). The serv
 
 - Locate `orchestrator.py` at `<project_dir>/ai/ael/src/orchestrator.py`
 - Locate `config.yaml` at `<project_dir>/ai/ael/config.yaml`
-- Read and write run state at `<project_dir>/.ael/ralph/`
+- Read and write run state at `<project_dir>/ai/state/ralph/`
 
 [Return to Table of Contents](<#table of contents>)
 
@@ -76,8 +76,8 @@ Launches `orchestrator.py` as a detached background process.
 
 **Behaviour:**
 - Validates `project_dir`, `orchestrator.py`, and `config.yaml` exist before spawning.
-- Spawns orchestrator as a detached subprocess (stdout/stderr redirected to a log file in `.ael/ralph/`).
-- Writes a run record (`mcp-run.json`) to `<project_dir>/.ael/ralph/` containing `run_id`, `pid`, `mode`, `task`, and `started_at`.
+- Spawns orchestrator as a detached subprocess (stdout/stderr redirected to a log file in `ai/state/ralph/`).
+- Writes a run record (`mcp-run.json`) to `<project_dir>/ai/state/ralph/` containing `run_id`, `pid`, `mode`, `task`, and `started_at`.
 - Returns immediately; does not wait for orchestrator completion.
 
 ### 3.2 `ael_status`
@@ -91,7 +91,7 @@ Reports current AEL run state for a project.
 **Returns:** JSON object containing:
 - `run_id`, `pid`, `mode`, `task`, `started_at` — from `mcp-run.json` if present
 - `pid_alive` — boolean, whether the recorded PID is still running
-- `state_files` — list of state files present in `.ael/ralph/`
+- `state_files` — list of state files present in `ai/state/ralph/`
 - `shipped` — boolean, whether `.ralph-complete` exists
 - `blocked` — boolean, whether `RALPH-BLOCKED.md` exists
 
@@ -136,7 +136,7 @@ The orchestrator's runtime dependencies (`openai`, `rich`, `pyyaml`, etc.) must 
   "mode": "loop",
   "task": "implement the login module",
   "started_at": "2026-04-25T07:00:00",
-  "log_path": "/path/to/.ael/ralph/mcp-12345.log"
+  "log_path": "/path/to/ai/state/ralph/mcp-12345.log"
 }
 ```
 
